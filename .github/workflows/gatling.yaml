@@ -29,7 +29,17 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B clean gatling:test
-      - uses: actions/upload-artifact@v3
+      #      - uses: actions/upload-artifact@v3
+      #        with:
+      #          name: Gatling Report
+      #          path: target/gatling/**/*
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: Gatling Report
-          path: target/gatling/**/*
+          # Upload entire repository
+          path: target/gatling/computerdatabasesimulation-*
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
