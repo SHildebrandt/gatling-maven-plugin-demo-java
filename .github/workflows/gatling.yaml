@@ -45,7 +45,7 @@ jobs:
       - name: Build with Maven
         run: |
           mvn -B clean gatling:test
-          SIM=$(grep computerdatabasesimulation- target/gatling/lastRun.txt)
+          echo "SIM=$(grep computerdatabasesimulation- target/gatling/lastRun.txt)" >> $GITHUB_ENV
       #      - uses: actions/upload-artifact@v3
       #        with:
       #          name: Gatling Report
