@@ -48,7 +48,7 @@ jobs:
         run: |
           cp -R target/gatling/$(grep computerdatabasesimulation- target/gatling/lastRun.txt) reports/sim1
           cp -R target/gatling/$(grep computerdatabasesimulation2- target/gatling/lastRun.txt) reports/sim2
-          cp -R target/gatling/$(grep computerdatabasesimulation- target/gatling/lastRun.txt) reports/sim3
+          cp -R target/gatling/$(grep computerdatabasesimulation3- target/gatling/lastRun.txt) reports/sim3
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

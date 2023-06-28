@@ -2,15 +2,72 @@
 <html>
 <head>
     <title>Gatling Reports</title>
-    <!--    <link rel="stylesheet" type="text/css" href="path/to/your/css/styles.css">-->
+    <style>
+        /* CSS styles for the navigation menu */
+        ul.nav-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f2f2f2;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        ul.nav-menu li {
+            float: left;
+        }
+
+        ul.nav-menu li a {
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul.nav-menu li a:hover {
+            background-color: #ddd;
+        }
+
+        ul.nav-menu li.active a {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* CSS styles for the iframe section */
+        iframe {
+            margin-top: 40px; /* Adjust margin top value as needed */
+            width: 100%;
+            height: calc(100vh - 100px); /* Adjust height as needed */
+            border: none;
+        }
+    </style>
 </head>
 <body>
-<h1>Gatling Reports</h1>
-
-<ul>
-    <li><a href="sim1/index.html">ComputerDatabaseSimulation</a></li>
-    <li><a href="sim2/index.html">ComputerDatabaseSimulation 2</a></li>
-    <li><a href="sim3/index.html">ComputerDatabaseSimulation 3</a></li>
+<!-- Navigation menu for different test runs -->
+<ul class="nav-menu">
+    <li class="active"><a href="#" onclick="changeIframeSrc(this, 'sim1/index.html')">Report 1</a></li>
+    <li><a href="#" onclick="changeIframeSrc(this, 'sim2/index.html')">Report 2</a></li>
+    <li><a href="#" onclick="changeIframeSrc(this, 'sim3/index.html')">Report 3</a></li>
 </ul>
+
+<!-- Embedded report page using iframe -->
+<iframe id="report-iframe" src="sim1/index.html"></iframe>
+
+<script>
+    function changeIframeSrc(element, src) {
+        let iframe = document.getElementById('report-iframe');
+        iframe.src = src;
+
+        let menuItems = document.querySelectorAll('.nav-menu li');
+        menuItems.forEach(function (item) {
+            item.classList.remove('active');
+        });
+
+        element.parentElement.classList.add('active');
+    }
+</script>
 </body>
 </html>
