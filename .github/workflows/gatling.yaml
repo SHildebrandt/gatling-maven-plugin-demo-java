@@ -43,19 +43,18 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
+        run: mvn -B clean gatling:test
+      - name: Aggregate reports
         run: |
-          mvn -B clean gatling:test
-          echo "SIM=$(grep computerdatabasesimulation- target/gatling/lastRun.txt)" >> $GITHUB_ENV
-      #      - uses: actions/upload-artifact@v3
-      #        with:
-      #          name: Gatling Report
-      #          path: target/gatling/**/*
+          cp -R target/gatling/$(grep computerdatabasesimulation- target/gatling/lastRun.txt) reports/sim1
+          cp -R target/gatling/$(grep computerdatabasesimulation2- target/gatling/lastRun.txt) reports/sim2
+          cp -R target/gatling/$(grep computerdatabasesimulation- target/gatling/lastRun.txt) reports/sim3
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: target/gatling/${{ env.SIM }}
+          path: reports
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
